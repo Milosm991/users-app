@@ -1,17 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-import {
-  Container,
-  Box,
-  Input,
-  Button,
-  Center,
-  useToast
-} from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 
 import { emailValidation } from '../../services/emailValidation'
 import UserServices from '../../services/UserServices'
+import UserForm from '../UserForm/UserForm'
 
 const EditUser = () => {
         const [ inputValues, setInputValues ] = useState({
@@ -50,31 +44,12 @@ const EditUser = () => {
             }
         }
         return (
-            <Container 
-            maxW='md' 
-            centerContent
-            borderWidth="2px" 
-            borderRadius="lg"
-            borderColor='darkslategray'
-            p={10}
-            marginTop={50}>
-                <Box centerContent>
-                    <Center fontWeight="bold" fontSize="lg" color='darkslategray' mb={6}>{name}</Center>
-                    <Input 
-                        placeholder='Enter new name...' 
-                        marginBottom={6} type='text' 
-                        name='name' 
-                        value={inputValues.name} 
-                        onChange={editedUser}/>
-                    <Input 
-                        placeholder='Enter new email...' 
-                        marginBottom={6} type='text' 
-                        name='email' 
-                        value={inputValues.email} 
-                        onChange={editedUser}/>
-                    <Button colorScheme="blue" onClick={handleEditBtn}>Edit</Button>
-                </Box>
-            </Container>
+           <UserForm 
+                title={name}
+                getValues={editedUser}
+                submit={handleEditBtn}
+                name={inputValues.name}
+                email={inputValues.email}/>
         )
 }
 export default EditUser

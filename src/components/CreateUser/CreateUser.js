@@ -1,17 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import {
-  Container,
-  Box,
-  Input,
-  Button,
-  Center,
-  useToast
-} from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 
 import { emailValidation } from '../../services/emailValidation'
 import UserServices from '../../services/UserServices'
+import UserForm from '../UserForm/UserForm'
 
 const CreateUser = () => {
     const [ inputValues, setInputValues ] = useState({
@@ -49,23 +43,12 @@ const CreateUser = () => {
         }
     }
     return (
-        <div>
-            <Center mt={25}>Create new user</Center>
-        <Container 
-        maxW='md' 
-        centerContent
-        borderWidth="1px" 
-        borderRadius="lg"
-        borderColor='black'
-        p={10}
-        marginTop={50}>
-            <Box>
-                <Input placeholder="Enter name" marginBottom={6} type='text' name='name' value={inputValues.name} onChange={newUser}/>
-                <Input placeholder="Enter email" marginBottom={6} type='text' name='email' value={inputValues.email} onChange={newUser}/>
-                <Button colorScheme="blue" onClick={handleCreateBtn}>Save</Button>
-            </Box>
-        </Container>
-        </div>
+       <UserForm 
+            title='Create new user'
+            getValues={newUser}
+            submit={handleCreateBtn}
+            name={inputValues.name}
+            email={inputValues.email}/>
     )
 }
 export default CreateUser

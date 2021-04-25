@@ -26,16 +26,16 @@ const Users = () => {
         UserServices.getAllUsers()
         .then(data => setUsers(data))
         
-        if(users.length === 0){
-            setLoader(true)
-        }else{
+        if(users.length !== 0){
             setLoader(false)
+        }else{
+            setLoader(true)
         }
     }
 
     useEffect(() => {
         fetchAllUsers()
-    }, [])
+    })
     
     return loader ? <Loader /> : (
         <Container maxW="container.xl" mt={10} >
@@ -58,7 +58,7 @@ const Users = () => {
                     ))}
                 </Tbody>
             </Table>
-            <Button mt={4} onClick={() => history.push('/createUser')}>Create New User</Button>        
+            <Button mt={4} mb={6} onClick={() => history.push('/createUser')}>Create New User</Button>        
         </Container>
     ) 
 }

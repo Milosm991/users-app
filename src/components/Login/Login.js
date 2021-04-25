@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
 import { 
-    Container, 
-    Center,
+    Container,
     Box,
     Input,
     Button,
@@ -40,7 +39,6 @@ const Login = () => {
     }
 
     return (
-        <div>
         <Container 
             maxW='md' 
             centerContent
@@ -55,7 +53,6 @@ const Login = () => {
                     <Button colorScheme="blue" onClick={log}>Log In</Button>
                 </Box>
         </Container>
-        </div>
     )
 }
 

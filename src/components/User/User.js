@@ -30,10 +30,10 @@ const User = () => {
         UserServices.getSingleUser(id)
         .then(data => setUser(data))
         
-        if(user.length === 0){
-            setLoader(true)
-        }else{
+        if(user.length !== 0){
             setLoader(false)
+        }else{
+            setLoader(true)
         }
     }
 
@@ -62,21 +62,23 @@ const User = () => {
 
     useEffect(() => {
         fetchSingleUser(id)
-    }, [id])
+    })
 
     return loader ? <Loader /> : (
         <Container maxW="container.xl" mt={10}>
             <Table variant="simple">
                 <Thead>
-                    <Th>ID</Th>
-                    <Th>Name</Th>
-                    <Th>Email</Th>
-                    <Th>City</Th>
-                    <Th>Street</Th>
-                    <Th>Username</Th>
-                    <Th>Phone</Th>
-                    <Th>Web</Th>
-                    <Th>Company</Th>
+                    <Tr>
+                        <Th>ID</Th>
+                        <Th>Name</Th>
+                        <Th>Email</Th>
+                        <Th>City</Th>
+                        <Th>Street</Th>
+                        <Th>Username</Th>
+                        <Th>Phone</Th>
+                        <Th>Web</Th>
+                        <Th>Company</Th>
+                    </Tr>
                 </Thead>
                 <Tbody>
                     <Tr>

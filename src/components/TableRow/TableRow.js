@@ -10,7 +10,7 @@ const TableRow = ({ id, name, email, city }) => {
         <Tr
         onClick={() => history.push(`/users/${id}`)} 
         _hover={{
-        background: "lightblue",
+        background: "lightslategray",
         color: "white",
         cursor: "pointer"
         }}>

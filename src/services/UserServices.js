@@ -64,7 +64,3 @@ class UserServices {
 }
 
 export default UserServices
-
-
-
-// console.log(data, `${url}/${id}`)
