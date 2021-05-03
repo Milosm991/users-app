@@ -1,5 +1,7 @@
 import User from '../entities/user.js';
 
+import { succsess_edit, error, success_create } from './notifications.js'
+
 const url = 'https://jsonplaceholder.typicode.com/users';
 
 class UserServices {
@@ -25,9 +27,9 @@ class UserServices {
                     body: JSON.stringify(user)
                 }).then((response) => {
                     if(response.status === 201){
-                        return true
+                        return success_create
                     } else {
-                        return false
+                        return error
                     }
                 })
             )
@@ -39,6 +41,7 @@ class UserServices {
                     method: 'DELETE'
                 }).then((response) => {
                     if(response.status === 200){
+                        console.log(response);
                         return true
                     }else{
                         return false
@@ -54,9 +57,9 @@ class UserServices {
                     body: JSON.stringify(data)
                 }).then((response) => {
                     if (response.status === 200){
-                        return true
+                        return succsess_edit
                     }else{
-                        return false
+                        return error
                     }
                 })
             )

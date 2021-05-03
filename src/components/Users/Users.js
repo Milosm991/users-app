@@ -21,10 +21,12 @@ const Users = () => {
     const [users, setUsers] = useState([])
     const [loader, setLoader ] = useState(true)
     const history = useHistory()
+    
 
     const fetchAllUsers = () => {
-        UserServices.getAllUsers()
+        const users = UserServices.getAllUsers()
         .then(data => setUsers(data))
+        console.log('users comp monuted');
         
         if(users.length !== 0){
             setLoader(false)
@@ -35,7 +37,7 @@ const Users = () => {
 
     useEffect(() => {
         fetchAllUsers()
-    })
+    }, [])
     
     return loader ? <Loader /> : (
         <Container maxW="container.xl" mt={10} >

@@ -17,6 +17,7 @@ import {
 import UserServices from '../../services/UserServices.js'
 import Loader from '../Loader/Loader.js'
 import AlertModal from '../AlertModal/AlertModal.js'
+import { error } from '../../services/notifications.js';
 
 const User = () => {
     const [user, setUser] = useState([])
@@ -24,21 +25,24 @@ const User = () => {
     const { id } = useParams()
     const toast = useToast()
     const history = useHistory()
+    let componentMounted = true;
 
 
     const  fetchSingleUser = (id) => {
-        UserServices.getSingleUser(id)
-        .then(data => setUser(data))
-        
-        if(user.length !== 0){
-            setLoader(false)
-        }else{
-            setLoader(true)
-        }
+       UserServices.getSingleUser(id)
+       .then(data => setUser(data))
+
+       if(componentMounted) {
+           setLoader(false)
+       } else {
+            return componentMounted = false
+       }
+
     }
 
-    const deleteBtn = () => {
-        const deletedUser = UserServices.deleteUser(id);
+    const deleteBtn = async () => {
+        const deletedUser = await UserServices.deleteUser(id);
+        console.log(deletedUser);
         
         if(deletedUser){
             toast({
@@ -50,19 +54,13 @@ const User = () => {
             })
             history.push('/users') 
         }else {
-            toast({
-                title: "ERROR!",
-                description: `Ooops, Something went wrong!`,
-                status: "error",
-                duration: 3000,
-                isClosable: true,
-            })
+            toast(error)
         }
     }
 
     useEffect(() => {
         fetchSingleUser(id)
-    })
+    }, [id])
 
     return loader ? <Loader /> : (
         <Container maxW="container.xl" mt={10}>
