@@ -42,7 +42,6 @@ const User = () => {
 
     const deleteBtn = async () => {
         const deletedUser = await UserServices.deleteUser(id);
-        console.log(deletedUser);
         
         if(deletedUser){
             toast({
@@ -59,7 +58,13 @@ const User = () => {
     }
 
     useEffect(() => {
-        fetchSingleUser(id)
+        let email = localStorage.getItem('email')
+        
+        if(email !== null){
+            fetchSingleUser(id)
+        }else {
+            history.push('/')
+        }
     }, [id])
 
     return loader ? <Loader /> : (

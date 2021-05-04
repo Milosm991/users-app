@@ -1,4 +1,4 @@
-import { error_data, phone_error } from './notifications.js'
+import { error_data, phone_error, error_name } from './notifications.js'
 
 export const emailValidation = (email) => {
     
@@ -35,8 +35,8 @@ export const validURL = (web) => {
     return !!pattern.test(web);
   }
 
-export const checkFormat = ( name, street, username, company ) => {
-    if(typeof name !== 'string' && typeof street !== 'string' && typeof username !== 'string' && typeof company !== 'string'){
+export const checkFormat = ( street, username, company ) => {
+    if(typeof street !== 'string' && typeof username !== 'string' && typeof company !== 'string'){
         return error_data
     } else {
         return true
@@ -54,6 +54,15 @@ export const phoneValidaton = (phone) => {
     }
 }
 
+export const nameValidation = (name) => {
+    let specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]+/;
+
+    if(specialCharacters.test(name)){
+        return error_name
+    }else{
+        return false
+    }
+}
 export const validation = (email) => {
     const isEmailOk = emailValidation(email)
     const getEmail = localStorage.getItem('email')
@@ -64,6 +73,7 @@ export const validation = (email) => {
         return true
     }else{
         localStorage.setItem('email', email)
+        localStorage.setItem('activeSession', true)
         return true
     }
 }

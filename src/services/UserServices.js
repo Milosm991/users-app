@@ -41,7 +41,6 @@ class UserServices {
                     method: 'DELETE'
                 }).then((response) => {
                     if(response.status === 200){
-                        console.log(response);
                         return true
                     }else{
                         return false

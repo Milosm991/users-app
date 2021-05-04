@@ -11,6 +11,19 @@ import CreateUser from "./components/CreateUser/CreateUser.js"
 import EditUser from "./components/EditUser/EditUser.js"
 
 function App() {
+
+  const deleteSession = () => {
+    let isActiveSession = localStorage.getItem('activeSession')
+
+    if(isActiveSession){
+      localStorage.removeItem('email')
+      localStorage.removeItem('activeSession')
+    }else{
+      return null
+    }
+  }
+  window.onunload = setTimeout(deleteSession, 5000)
+
   return (
     <ChakraProvider>
       <Header />

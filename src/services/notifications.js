@@ -22,6 +22,14 @@ export const error_data = {
     isClosable: true,
 }
 
+export const error_name ={
+    title: "ERROR!",
+    description: "Special characters and numbers are not allowed in name!",
+    status: "error",
+    duration: 5000,
+    isClosable: true,
+}
+
 export const error_empty = {
         title: "ERROR!",
         description: "All fields must be filled!",

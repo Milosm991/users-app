@@ -10,6 +10,7 @@ import {
     useToast } from "@chakra-ui/react"
 
 import { validation } from '../../services/emailValidation'
+import { error_email } from '../../services/notifications'
 
 const Login = () => {
     const history = useHistory();
@@ -20,13 +21,7 @@ const Login = () => {
         if(email){
             history.push('/users')
         }else{
-            toast({
-                title: "ERROR!",
-                description: "Enter correct email!",
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-            })
+            toast(error_email)
         }    
         
     }

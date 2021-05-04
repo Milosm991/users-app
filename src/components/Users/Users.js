@@ -26,7 +26,6 @@ const Users = () => {
     const fetchAllUsers = () => {
         const users = UserServices.getAllUsers()
         .then(data => setUsers(data))
-        console.log('users comp monuted');
         
         if(users.length !== 0){
             setLoader(false)
@@ -36,7 +35,13 @@ const Users = () => {
     }
 
     useEffect(() => {
-        fetchAllUsers()
+        let email = localStorage.getItem('email')
+        
+        if(email !== null) {
+            fetchAllUsers()
+        }else {
+            history.push('/')
+        }
     }, [])
     
     return loader ? <Loader /> : (
