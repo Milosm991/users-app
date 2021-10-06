@@ -73,7 +73,6 @@ export const validation = (email) => {
         return true
     }else{
         localStorage.setItem('email', email)
-        localStorage.setItem('activeSession', true)
         return true
     }
 }

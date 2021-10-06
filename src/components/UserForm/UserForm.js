@@ -29,13 +29,13 @@ const UserForm = ({title, edit}) => {
     const handleSubmitBtn = async () => {
         const { name, email, street, username, phone, web, company } = inputValues
 
-        const newUser = edit ? await UserServices.editUser(inputValues, id) : await UserServices.createUser(inputValues)
         const isEmailOk = emailValidation(email)
         const isFilled = checkFormFields(name, email, inputValues.id, street, username, phone, web, company)
         const formatOfValues = checkFormat(name, street, username, company)
         const url = validURL(web)
         const isPhoneOk = phoneValidaton(phone)
         const isNameOk = nameValidation(name) 
+        const newUser = edit ? await UserServices.editUser(inputValues, id) : await UserServices.createUser(inputValues)
         
         if(!isFilled){
             toast(error_empty)
